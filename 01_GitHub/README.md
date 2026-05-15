@@ -33,6 +33,8 @@ A template README file is available [here](https://github.com/HCEMM/acceleration
 
 ### 2.1. GitHub Actions and Pages
 
+[GitHub Actions](https://github.com/features/actions) allows for automated workflows on GitHub, such as automated testing of your tools, or automated deployment into, e.g., package managers like Bioconda or PyPI. [GitHub Pages](https://docs.github.com/en/pages) allows to display a website directly from your repository, in a more friendly format than the README file. Both features require [generating a GitHub token](https://github.com/settings/tokens/new).
+
 
 
 ## 3. GitHub in collaboration
