@@ -14,10 +14,9 @@ mkdir -p "$OUTPUT_DIR"/multiqc_report
 
 
 # check if multiqc_report directory was generated, and exit code 1 if not
-if [ ! -d "$OUTPUT_DIR/multiqc_report" ]; then
+if [ ! -f "$OUTPUT_DIR/multiqc_report/multiqc_report.html" ]; then
     echo "Error: MultiQC report was not generated at $OUTPUT_DIR/multiqc_report."
     exit 1
 fi
 
-
-echo "Report assets copied"
+echo "MultiQC report generated successfully at $OUTPUT_DIR/multiqc_report"
