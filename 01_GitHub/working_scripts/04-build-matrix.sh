@@ -8,4 +8,10 @@ echo "Counting matches into summary matrix"
 
 python 01_GitHub/scripts/build_matrix.py "$RESULTS_DIR"
 
+# check if the matrix file was created successfully
+if [ ! -f "$RESULTS_DIR/matches_summary.csv" ]; then
+    echo "Error: matches_summary.csv was not created in $RESULTS_DIR."
+    exit 1
+fi
+
 echo "Matches matrix built"

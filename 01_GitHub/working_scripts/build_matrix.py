@@ -39,8 +39,3 @@ if __name__ == "__main__":
         sys.exit(1)
         
     build_matrix(sys.argv[1])
-    
-    # check if the matrix file was created successfully
-    if not isfile(f"{sys.argv[1]}/matches_summary.csv"):
-        print("Error: matches_summary.csv was not created.")
-        sys.exit(1)    
