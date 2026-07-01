@@ -80,10 +80,10 @@ conda activate nf-core
 ```
 
 **Essential CLI commands**
-- ```nf-core list```: Displays a dynamically updated list of all available pipelines in the nf-core repository. It shows the latest stable release version, when it was last updated, and whether it has been downloaded locally.
-  - > Tip: Use ```nf-core list rnaseq``` to filter for specific keywords.
-- ```nf-core launch <pipeline>```: Instead of manually writing long bash scripts with dozens of --parameters, this command starts an interactive, web-based (or CLI-based) wizard. It walks you through every available parameter, validates your inputs, and generates a ```params.json``` file to safely launch the run.
-- ```nf-core download <pipeline>```: Essential for institutions with strict security protocols. This command downloads the pipeline code, the exact institutional configuration files, and even pulls the required Docker/Singularity container images for offline, air-gapped execution.
+- ```nf-core pipeline list```: Displays a dynamically updated list of all available pipelines in the nf-core repository. It shows the latest stable release version, when it was last updated, and whether it has been downloaded locally.
+  - > Tip: Use ```nf-core pipeline list rnaseq``` to filter for specific keywords.
+- ```nf-core pipeline launch <pipeline>```: Instead of manually writing long bash scripts with dozens of --parameters, this command starts an interactive, web-based (or CLI-based) wizard. It walks you through every available parameter, validates your inputs, and generates a ```params.json``` file to safely launch the run.
+- ```nf-core pipeline download <pipeline>```: Essential for institutions with strict security protocols. This command downloads the pipeline code, the exact institutional configuration files, and even pulls the required Docker/Singularity container images for offline, air-gapped execution.
 
 <img width="1378" height="493" alt="image" src="https://github.com/user-attachments/assets/eb3ea00d-1d9a-41cc-ae87-214b8c4056bc" />
 
