@@ -10,6 +10,7 @@ In previous sessions, we containerized individual bioinformatics tools. Here, we
 
 *Source: [HBCTraining - Pseudoaligners](https://hbctraining.github.io/Intro-to-rnaseq-hpc-gt/lessons/10_salmon.html)*
 
+-------------
 
 ### Part 1: Pipeline Architecture
 A standard Nextflow repository relies on two central files to control execution and configuration, isolating the "how" from the "where."
@@ -227,7 +228,10 @@ Once the processes are updated, please:
 | Group3 | salmon |salmon-g3| hcemm/bioinfo-workshop:salmon|
 | Group4 | R + limma |limma-g4| hcemm/bioinfo-workshop:limma|
 
-> Questions:
+### Questions:
+> 1. How do you specify the correct DockerHub container image for your group's tool within the Nextflow process?
+> 2. According to the submission protocol, what automated checks must pass before you are allowed to open a Pull Request?
+> 3. When opening your Pull Request, which branch must be the target (base), and which is your source (compare) branch?
 
 ### Part 4: Execution & Debugging
 Once all PRs are merged into the main branch and tested with Github Actions, we can execute our pipeline.
@@ -253,10 +257,13 @@ Nextflow generates two critical directories. Knowing the difference is key to de
 2. The ```results/``` Directory (The Display Case)
 Driven by the ```publishDir``` directive, this is where your clean, final data lives (e.g., _MultiQC_ HTML reports, _Salmon_ count matrices, _Limma_ Volcano plots).
 
-> Question! Let's open our results/ folder and inspect our final outputs:
-- The MultiQC HTML report to see our sequence quality before and after trimming.
-- The Salmon quantification tables mapping our reads to transcripts.
-- The R/limma plots (e.g., Volcano plots, PCA) showing the differentially expressed genes in our dataset.
+### Questions: 
+> 1. If Nextflow crashes and prints `Error executing process > 'TRIMMOMATIC (Sample_1)' [7b/3a1c9f]`, what is the exact file path you need to investigate, and which specific hidden file contains the error message?
+> 2. _Scenario_: You successfully run the entire pipeline without any errors, but when you look inside your `results/` folder, it is completely empty. What Nextflow directive is likely missing from your process scripts?
+> 3. The `work/` directory can quickly grow to hundreds of gigabytes because it stores every intermediate file. If you delete the `work/` directory to save space, what Nextflow superpower do you instantly lose for your next run?
+> 4.  _Scenario_: You can see the Salmon count matrices in `results/`, but you cannot find the intermediate `.bam` or `.fastq` files here. Why are they missing, and where are they actually stored?
+
+---------------
 
 ### Pipeline info and output plots
 
@@ -287,6 +294,10 @@ Driven by the ```publishDir``` directive, this is where your clean, final data l
 
 </div>
 
+### Questions:
+> 1. Look at your generated Volcano plot and compare it to the results usually seen in published RNA-seq papers. Did we lose a lot of biological information about the dexamethasone treatment by using mock data? 
+> 2. How exactly does a massive reduction in sequencing depth (total read count) affect our statistical power? (Hint: Think about how low read counts impact the adjusted p-values on the Y-axis versus the log-fold change on the X-axis).
+> 3. If you look closely, a few genes might still appear highly significant despite the mock data. Biologically speaking, what kind of genes are robust enough to survive such aggressive downsampling?
 
 ----------------
 
