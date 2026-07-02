@@ -191,7 +191,7 @@ Nextflow needs to know exactly what kind of data is flowing into and out of your
 ----------------------
 
 ### Part 3: Group Assignment
-> *Your task is to convert hollow ```.nf``` templates into functional modules using your optimized container commands.*
+> *Your task is to convert hollow ```.nf``` templates into functional **processes** using your optimized container commands.*
 
 **The Assignments**
 - Group 1: Quality Control | Complete ```fastqc.nf```
@@ -208,7 +208,9 @@ Once the processes are updated, please:
 - Check Github Actions (CICD) syntax and Nextflow tests (```nf-test```)
 - When all checks are passed, open a Pull Request (PR) to ```developer``` branch!
 
-image
+<img width="758" height="373" alt="image" src="https://github.com/user-attachments/assets/aa44574f-4916-4713-8bea-60a974def165" />
+
+<br/>
 
 > Once all groups have created a PR, a whole pipeline test will be performed! ✅
 
@@ -221,30 +223,66 @@ image
 | Group3 | salmon |salmon-g3| hcemm/bioinfo-workshop:salmon|
 | Group4 | R + limma |limma-g4| hcemm/bioinfo-workshop:limma|
 
+> Questions:
+
 ### Part 4: Execution & Debugging
-Once all PRs are merged into the main branch and tested with Github Actions, we execute our pipeline.
+Once all PRs are merged into the main branch and tested with Github Actions, we can execute our pipeline.
 
 ```
 nextflow run main.nf -resume
 ```
 > *Note on ```-resume```: If the pipeline crashes, fix the typo and run this exact command again. Nextflow uses cached hashes to skip completed steps and instantly restart at the point of failure.*
 
+<img width="1335" height="244" alt="image" src="https://github.com/user-attachments/assets/473e7a9b-8c05-4d38-bbbf-ebf3c8e11f68" />
+
+-------------------
 
 ### Inspecting the Outputs
 Nextflow generates two critical directories. Knowing the difference is key to debugging. (```work``` and ```results```)
 
 1. The ```work/``` Directory (The Engine Room)
-- Nextflow executes every single process in a heavily isolated, hidden directory inside the work/ folder.
-- If you look at your terminal output during execution, you will see alphanumeric hashes next to each process (e.g., [7b/3a1c9f]).
-- You can navigate to work/7b/3a1c9f... to see exactly what happened in that specific job. Inside, you will find hidden files like .command.sh (the exact bash script that ran), .command.out (the standard output), and .command.err (the error messages). This is your primary debugging zone!
+- Every task runs in an isolated, hashed subdirectory (e.g. ```work/7b/3a1c9f....```)
+- Debugging: If a job fails, navigate to its specific hash directory and read the ```.command.err``` and ```.command.sh``` files to see exactly what broke.
+
+
 
 2. The ```results/``` Directory (The Display Case)
-Because the work/ directory is chaotic, heavily nested, and temporary, we use Nextflow's publishDir directive in our code to copy the final, important files here.
+Driven by the ```publishDir``` directive, this is where your clean, final data lives (e.g., _MultiQC_ HTML reports, _Salmon_ count matrices, _Limma_ Volcano plots).
 
-Let's open our results/ folder and inspect our final outputs:
+> Question! Let's open our results/ folder and inspect our final outputs:
 - The MultiQC HTML report to see our sequence quality before and after trimming.
 - The Salmon quantification tables mapping our reads to transcripts.
 - The R/limma plots (e.g., Volcano plots, PCA) showing the differentially expressed genes in our dataset.
+
+### Pipeline info and output plots
+
+**Nextflow report and timeline view**
+
+> *Using ```-with-report``` and ```-with-timeline``` options*
+
+
+<img width="700" alt="image" src="https://github.com/user-attachments/assets/e1f3112d-0bbf-4e0b-ae0c-b5d59013dfef" />
+<img width="700" alt="image" src="https://github.com/user-attachments/assets/9723f014-5e82-401c-af17-7eebc3451c4b" />
+
+---------------
+
+**Differential expression plots**
+
+> Airway smooth muscle cells (hASMs) treated with Dexamethasone
+
+<div class="grid" markdown>
+
+<img height="400" alt="image" src="https://github.com/user-attachments/assets/1a9d1205-a4e3-470b-9c97-fb255b680026" />
+
+<img height="400" alt="image" src="https://github.com/user-attachments/assets/be4ff97d-0543-40bd-9b44-6d6e67e59661" />
+
+<img height="400" alt="image" src="https://github.com/user-attachments/assets/f7569e0d-4198-4065-9c2c-ef0e68714cfa" />
+
+<img height="400" alt="image" src="https://github.com/user-attachments/assets/c9f36768-83ff-4ecc-afff-bf2d464d01f4" />
+
+
+</div>
+
 
 ----------------
 
