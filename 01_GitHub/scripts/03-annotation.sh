@@ -30,7 +30,7 @@ do
         --out "$RESULTS_DIR/${SAMPLE_NAME}_matches.tab" \
         --threads "$THREADS" \
         --max-target-seqs "$MAX_TARGET_SEQS" \
-        --outfmt 6
+        --outfmt 5
 
     
 done
